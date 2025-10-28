@@ -1,81 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Inventario</title>
-   <!-- coincide EXACTO con el nombre -->
-<script src="./JS/Inventario.js"></script>
-<script src="./JS/Venta.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JenApp — Inventario</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-<link href="./CSS/app.css" rel="stylesheet">
+  <!-- Bootstrap CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
+  <!-- Tu CSS (ojo al case: CSS/) -->
+  <link href="./CSS/app.css?v=3" rel="stylesheet" />
 </head>
-<body>
-<header class="navbar navbar-expand-lg navbar-dark navbar-app sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="index.html">
-      <i class="bi bi-bag-check"></i> JenApp
-    </a>
+<body class="inventario">
+  <header class="navbar navbar-expand-lg navbar-dark navbar-app sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-bag-check"></i> JenApp
+      </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <nav id="MenuNavegacion" class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto gap-lg-2">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="Venta.html">Venta</a></li>
-        <li class="nav-item"><a class="nav-link" href="Inventario.html">Inventario</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <nav id="MenuNavegacion" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="Venta.html">Venta</a></li>
+          <li class="nav-item"><a class="nav-link active" href="Inventario.html">Inventario</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-
- <main class="container-app">
-  <div class="grid-inventario">
-    <section class="card">
-      <div class="toolbar">
-        <div class="searchbox">
-          <i class="bi bi-search"></i>
-          <input id="buscar" type="text" placeholder="Buscar producto...">
+  <main class="container-app">
+    <div class="grid-inventario">
+      <section class="card">
+        <div class="toolbar">
+          <div class="searchbox">
+            <i class="bi bi-search"></i>
+            <input id="buscar" type="text" placeholder="Buscar producto..." />
+          </div>
+          <select id="pageSize" class="select">
+            <option>10</option><option>25</option><option>50</option>
+          </select>
+          <button id="exportCsv" class="btn btn-outline">Exportar CSV</button>
         </div>
-        <select id="pageSize" class="select">
-          <option>10</option><option>25</option><option>50</option>
-        </select>
-        <button id="exportCsv" class="btn btn-outline">Exportar CSV</button>
-      </div>
 
-      <div class="table-wrap">
-        <table id="tablaProductos">
-          <thead>
-            <tr>
-              <th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody><!-- filas JS --></tbody>
-        </table>
-      </div>
+        <div class="table-wrap">
+          <table id="tablaProductos">
+            <thead>
+              <tr>
+                <th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody><!-- filas JS --></tbody>
+          </table>
+        </div>
 
-      <div id="paginacion" class="pagination-app"><!-- botones JS --></div>
-    </section>
+        <div id="paginacion" class="pagination-app"><!-- botones JS --></div>
+      </section>
 
-    <aside class="card form-card">
-      <h2>Nuevo / Editar</h2>
-      <div class="row">
-        <input class="form-control" placeholder="Nombre">
-        <input class="form-control" placeholder="Categoría">
-        <input class="form-control" placeholder="Precio" type="number" step="0.01">
-        <input class="form-control" placeholder="Stock" type="number">
-        <textarea class="form-control full" rows="3" placeholder="Descripción..."></textarea>
-        <button class="btn btn-primary full">Guardar</button>
-      </div>
-    </aside>
-  </div>
-</main>
+      <aside class="card form-card">
+        <h2>Nuevo / Editar</h2>
+        <div class="row">
+          <input class="form-control" placeholder="Nombre" />
+          <input class="form-control" placeholder="Categoría" />
+          <input class="form-control" placeholder="Precio" type="number" step="0.01" />
+          <input class="form-control" placeholder="Stock" type="number" />
+          <textarea class="form-control full" rows="3" placeholder="Descripción..."></textarea>
+          <button class="btn btn-primary full">Guardar</button>
+        </div>
+      </aside>
+    </div>
+  </main>
 
-  
+  <!-- JS al final -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./JS/Inventario.js?v=3"></script>
 </body>
 </html>
