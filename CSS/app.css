@@ -1,0 +1,531 @@
+/* ========================
+   Variables + Reset
+======================== */
+:root{
+  --bg: #0f1115;
+  --bg-2:#131723;
+  --card:#171b26;
+  --muted:#8b95a7;
+  --text:#e6e9ef;
+  --primary:#26d07c;       /* acento verde moderno */
+  --primary-600:#1fb26a;
+  --primary-700:#179157;
+  --danger:#ff5252;
+  --warning:#ffb020;
+  --info:#4aa8ff;
+  --ring: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
+  --radius:18px;
+  --radius-sm:12px;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+/* ========================
+   Body: Fondo moderno
+======================== */
+body {
+  margin: 0;
+  background:
+    radial-gradient(900px 700px at 20% -10%, rgba(38,208,124,0.12) 0%, transparent 70%),
+    radial-gradient(800px 600px at 100% 0%, rgba(59,173,227,0.10) 0%, transparent 65%),
+    linear-gradient(180deg, #0d1118 0%, #0a0e15 100%);
+  color: var(--text);
+  font-family: var(--font);
+  letter-spacing: .2px;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+/* Variantes por página (opcional: pon class en <body>) */
+body.inicio {
+  background:
+    radial-gradient(900px 700px at 20% -10%, rgba(38,208,124,0.12) 0%, transparent 70%),
+    linear-gradient(180deg, #0c1118 0%, #0a0d13 100%);
+}
+body.venta {
+  background:
+    radial-gradient(900px 700px at 80% -10%, rgba(100,140,255,0.10) 0%, transparent 70%),
+    linear-gradient(180deg, #0b0e18 0%, #080b12 100%);
+}
+body.inventario {
+  background:
+    radial-gradient(900px 700px at 40% -10%, rgba(255,190,100,0.10) 0%, transparent 70%),
+    linear-gradient(180deg, #0e1015 0%, #090b11 100%);
+}
+
+/* Scrollbar discreto */
+*::-webkit-scrollbar{height:10px;width:10px}
+*::-webkit-scrollbar-thumb{background:#232a39;border-radius:10px}
+
+/* ========================
+   Navbar moderno
+======================== */
+.navbar-app{
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg-2) 70%, transparent);
+  border-bottom: 1px solid #1f2636;
+}
+.navbar-app .nav-link{
+  position: relative;
+  color: var(--muted);
+  font-weight: 600;
+}
+.navbar-app .nav-link:after{
+  content:"";
+  position:absolute; left:8px; right:8px; bottom:6px; height:2px;
+  background: var(--primary);
+  scale: 0 1; transform-origin: left;
+  transition: scale .2s ease;
+}
+.navbar-app .nav-link:hover{ color: var(--text) }
+.navbar-app .nav-link.active{
+  color: var(--text);
+}
+.navbar-app .nav-link.active:after{ scale: 1 1 }
+
+/* ========================
+   Contenedores / tarjetas
+======================== */
+.container-app{
+  max-width:1200px;
+  margin-inline:auto;
+  padding:24px;
+}
+.card{
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card) 85%, #0d1017) 0%, var(--card) 100%);
+  border:1px solid #202636;
+  border-radius:var(--radius);
+  box-shadow: var(--shadow);
+  padding:20px;
+}
+
+/* Tipografía */
+h1,h2,h3{letter-spacing:.3px}
+h1{font-size:clamp(1.6rem, 2vw + 1rem, 2.2rem)}
+h2{font-size:clamp(1.2rem, 1.3vw + .9rem, 1.6rem)}
+.muted{color:var(--muted)}
+
+/* ========================
+   Formularios / Inputs
+======================== */
+.input, .select, .form-control{
+  background: #111522!important;
+  color: var(--text)!important;
+  border:1px solid #222a3a!important;
+  border-radius:12px!important;
+  padding:10px 12px!important;
+  outline:none!important;
+  transition:.2s ease;
+}
+.input:focus, .select:focus, .form-control:focus{
+  border-color: var(--primary-600)!important;
+  box-shadow: var(--ring)!important;
+}
+
+/* Botones */
+.btn, button{
+  border-radius:14px!important;
+  border:1px solid transparent;
+  font-weight:600!important;
+  transition: .2s ease;
+}
+.btn-primary{
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-600) 100%)!important;
+  border-color: var(--primary-700)!important;
+  color: #0b1510!important;
+}
+.btn-primary:hover{ filter:saturate(1.1) brightness(1.02) }
+.btn-outline{
+  background: transparent!important;
+  border-color:#2a3347!important;
+  color: var(--text)!important;
+}
+.btn-outline:hover{
+  border-color: var(--primary-600)!important;
+  color: var(--primary)!important;
+}
+
+/* Badges */
+.badge-soft{
+  background:#101624;
+  border:1px solid #1f2636;
+  color:var(--muted);
+  border-radius:999px;
+  padding:.35rem .7rem;
+}
+
+/* ========================
+   Tablas (Inventario/Ventas)
+======================== */
+.table-wrap{
+  overflow:auto;
+  border-radius: var(--radius);
+  border:1px solid #202636;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.95rem;
+}
+thead th{
+  position:sticky; top:0; z-index:1;
+  background:#121827;
+  color:#cdd6e5;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  border-bottom:1px solid #202636;
+  padding:14px 12px;
+}
+tbody td{
+  padding:14px 12px;
+  border-bottom:1px solid #1c2232;
+  color:#e2e6ee;
+}
+tbody tr:hover{ background:#121829 }
+
+/* Estado / precio */
+.price{font-variant-numeric: tabular-nums; font-weight:700}
+.stock-ok{color:#73e2a7}
+.stock-low{color:#ffb86b}
+.stock-out{color:#ff6b6b}
+
+/* ========================
+   Paginación / Toolbar
+======================== */
+.pagination-app{
+  display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:flex-end;
+  margin-top:14px;
+}
+.pagination-app .page-btn{
+  background:#0f1320;
+  color:var(--text);
+  border:1px solid #232b3d;
+  padding:8px 12px;
+  border-radius:12px;
+  cursor:pointer;
+}
+.pagination-app .page-btn[aria-current="true"]{
+  background:var(--primary);
+  color:#0b1510;
+  border-color:var(--primary-700);
+}
+
+.toolbar{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap:12px;
+  margin-bottom:14px;
+}
+@media (max-width: 768px){
+  .toolbar{ grid-template-columns:1fr }
+}
+.searchbox{
+  display:flex; gap:10px; align-items:center;
+  background:#111522; border:1px solid #222a3a; border-radius:12px; padding:8px 10px;
+}
+.searchbox i{ color:var(--muted) }
+.searchbox input{
+  flex:1; border:none; outline:none; background:transparent; color:var(--text);
+}
+
+/* ========================
+   INICIO (Hero)
+======================== */
+.hero{
+  display:grid; gap:18px; padding:32px; border-radius:var(--radius);
+  background: radial-gradient(800px 400px at 100% -10%, rgba(38,208,124,.15), transparent 60%), #0d1118;
+  border:1px solid #1a2131;
+}
+.hero .actions{ display:flex; gap:10px; flex-wrap:wrap }
+
+/* ========================
+   INVENTARIO
+======================== */
+.grid-inventario{
+  display:grid; gap:18px; grid-template-columns: 1.2fr .8fr;
+}
+@media (max-width: 1024px){ .grid-inventario{ grid-template-columns:1fr } }
+
+.form-card .row{ display:grid; gap:10px; grid-template-columns: 1fr 1fr }
+.form-card .row .full{ grid-column:1 / -1 }
+@media (max-width: 768px){ .form-card .row{ grid-template-columns:1fr } }
+
+/* ========================
+   VENTAS (lista + carrito)
+======================== */
+.grid-ventas{
+  display:grid; gap:18px; grid-template-columns: 1.1fr .9fr;
+}
+@media (max-width: 1100px){ .grid-ventas{ grid-template-columns:1fr } }
+
+.producto-item{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:12px 14px; border:1px solid #1f2636; border-radius:14px; background:#101523;
+}
+.producto-item:hover{ outline: var(--ring) }
+
+.carrito-linea{
+  display:grid; grid-template-columns: 1fr 80px 80px auto; gap:10px; align-items:center;
+  padding:10px 0; border-bottom:1px dashed #243048;
+}
+.carrito-total{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  padding-top:14px; border-top:1px solid #202636; font-size:1.1rem; font-weight:800;
+}
+
+/* ========================
+   Utilidades rápidas
+======================== */
+.shadow{ box-shadow: var(--shadow) }
+.round{ border-radius: var(--radius) }
+.hidden{ display:none !important }
+
+/* Toast simple */
+.toast-app{
+  position:fixed; right:16px; bottom:16px; background:#0d1118; color:var(--text);
+  border:1px solid #22304b; padding:12px 14px; border-radius:12px; box-shadow:var(--shadow);
+}
+
+/* Estados (para spans/badges) */
+.state-success{ color:var(--primary) }
+.state-warn{ color:var(--warning) }
+.state-danger{ color:var(--danger) }
+
+/* ========================
+   Footer moderno
+======================== */
+.footer-app{
+  margin-top: 24px;
+  padding: 22px 0;
+  border-top: 1px solid #202636;
+  background: rgba(16, 20, 29, .55);
+  backdrop-filter: blur(6px);
+}
+.footer-app .container-app{
+  padding-top: 0; padding-bottom: 0;
+}
+.footer-app p{
+  margin: 0.2rem 0;
+  color: #a5adbd;
+  font-size: .95rem;
+}
+.footer-app a{
+  color: var(--primary);
+  text-decoration: none;
+}
+.footer-app a:hover{
+  color: color-mix(in srgb, var(--primary) 85%, white);
+  text-decoration: underline;
+}
+
+/* ===== Mejora de contraste en el panel derecho (Nuevo / Editar) ===== */
+
+/* Fondo un pelín más claro que el card base para separar capas */
+.form-card{
+  background: linear-gradient(180deg, #161b28 0%, #141a25 100%) !important;
+}
+
+/* Título más visible */
+.form-card h2{
+  color: #e9edf4;              /* casi blanco */
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+
+/* Inputs claros sobre fondo oscuro */
+.form-card .form-control{
+  background: #0f1420 !important;
+  color: #f2f5fa !important;    /* texto del input */
+  border: 1px solid #283146 !important;
+}
+
+/* Placeholders con mejor legibilidad */
+.form-card .form-control::placeholder{
+  color: #bfc7d9 !important;    /* gris claro */
+  opacity: 1;                   /* evita que el navegador lo atenúe */
+}
+
+/* Foco accesible y notorio */
+.form-card .form-control:focus{
+  border-color: var(--primary-600) !important;
+  box-shadow: 0 0 0 3px rgba(38,208,124,.25) !important;
+}
+
+/* Textarea mismo tratamiento que inputs */
+.form-card textarea.form-control{
+  color: #eef2f8 !important;
+}
+
+/* Ajuste extra: placeholder de la barra de búsqueda también más legible */
+.searchbox input::placeholder{
+  color:#b9c2d4;
+  opacity:1;
+}
+
+
+/* ========================
+   INICIO — portada moderna
+======================== */
+body.inicio{
+  /* mismo look oscuro del resto */
+  background:
+    radial-gradient(900px 700px at 20% -10%, rgba(38,208,124,0.12) 0%, transparent 70%),
+    radial-gradient(800px 600px at 100% 0%, rgba(59,173,227,0.10) 0%, transparent 65%),
+    linear-gradient(180deg, #0d1118 0%, #0a0e15 100%);
+  background-attachment: fixed;
+}
+
+/* Tarjeta hero centrada con glass */
+.inicio .hero{
+  max-width: 920px;
+  margin: 64px auto;
+  padding: 40px 32px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(23,27,38,.75), rgba(18,23,34,.75)),
+    radial-gradient(1000px 400px at 0% -10%, rgba(38,208,124,.10), transparent 60%);
+  border: 1px solid #1f2739;
+  box-shadow: 0 16px 48px rgba(0,0,0,.35);
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+/* Título grande con leve gradiente */
+.inicio .hero h1{
+  margin: 0 0 10px 0;
+  font-size: clamp(2rem, 3.4vw + .5rem, 3.2rem);
+  line-height: 1.1;
+  background: linear-gradient(180deg, #ffffff, #cfe9dd 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 0 rgba(0,0,0,.2);
+}
+
+/* Subtítulo legible */
+.inicio .hero p{
+  color: #c5ccda;
+  font-size: 1.05rem;
+  margin: 0 auto 18px;
+  max-width: 72ch;
+}
+
+/* Botones principales del hero */
+.inicio .hero .actions{ gap:12px }
+.inicio .hero .btn.btn-primary{
+  padding: 10px 22px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-600) 100%) !important;
+  border-color: var(--primary-700) !important;
+  color: #08130f !important;
+  box-shadow: 0 8px 24px rgba(38,208,124,.25);
+}
+.inicio .hero .btn.btn-primary:hover{
+  filter: saturate(1.08) brightness(1.02);
+  transform: translateY(-1px);
+}
+.inicio .hero .btn.btn-outline{
+  padding: 10px 22px;
+  border-color: #2a3347 !important;
+  color: #d9dfeb !important;
+}
+.inicio .hero .btn.btn-outline:hover{
+  border-color: var(--primary-600) !important;
+  color: var(--primary) !important;
+}
+
+/* Footer a juego (si ya existe footer-app, esto solo pulirá) */
+.footer-app{
+  background: rgba(16, 22, 32, .65);
+  border-top: 1px solid #233048;
+  box-shadow: 0 -8px 30px rgba(0,0,0,.25) inset;
+}
+.footer-app p{ color:#c9d1e1 }
+.footer-app .text-muted{ color:#9aa3b6 !important }
+.footer-app a{ color: var(--primary) }
+.footer-app a:hover{ color: color-mix(in srgb, var(--primary) 85%, white) }
+
+/* Enlaces del contenido */
+.inicio a{ text-decoration: none }
+.inicio a:hover{ text-decoration: underline }
+
+/* Responsivo */
+@media (max-width: 640px){
+  .inicio .hero{ margin: 32px 16px; padding: 28px 20px }
+  .inicio .hero .actions{ flex-direction: column }
+}
+
+
+/* ===== Parche de contraste para VENTAS ===== */
+
+/* Título del panel derecho */
+.grid-ventas .card h2{
+  color:#e9edf5;
+}
+
+/* Item del catálogo (izquierda) */
+.producto-item{
+  background:#0f1420;                 /* un tono más claro que el card */
+  border-color:#273147;
+}
+.producto-item span{
+  color:#e6ecf7;                       /* nombre visible */
+}
+.producto-item .price{
+  color:#f0fff6;                        /* precio claro */
+  font-weight:700;
+}
+
+/* Botón "Agregar" más legible */
+.producto-item .btn{
+  color:#e9effa !important;
+  border-color:#2a3347 !important;
+}
+.producto-item .btn:hover{
+  color:var(--primary) !important;
+  border-color:var(--primary-600) !important;
+}
+
+/* Carrito (derecha) */
+.grid-ventas aside.card{
+  background: linear-gradient(180deg,#161b28 0%,#141a25 100%);
+  border-color:#1f273a;
+}
+.carrito-linea{
+  border-bottom:1px dashed #32415f;
+}
+.carrito-linea span{
+  color:#e9edf5;                        /* texto del carrito */
+}
+.carrito-total{
+  border-top-color:#2a3754;
+}
+.carrito-total span{
+  color:#f2f6fd;
+}
+#totalVenta{
+  color:#ffffff;                         /* total destacado */
+  font-weight:800;
+}
+
+/* Placeholders del buscador en Ventas */
+#buscarProducto::placeholder{
+  color:#bfc7d9;
+  opacity:1;
+}
+
+/* Select de categorías */
+#filtroCategoria{
+  color:#e6ecf7 !important;
+  background:#111522 !important;
+  border-color:#222a3a !important;
+}
+
+/* Botón principal de registrar venta: contraste alto */
+.grid-ventas .btn.btn-primary{
+  color:#08130f !important;
+  box-shadow:0 8px 24px rgba(38,208,124,.25);
+}
+
