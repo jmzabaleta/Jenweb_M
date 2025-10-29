@@ -67,6 +67,19 @@
         <button class="btn btn-primary w-100 mt-3">Registrar venta</button>
       </aside>
     </div>
+    <button id="btnVerHistorial" class="btn btn-outline w-100 mt-2">Ver historial</button>
+
+<!-- Contenedor donde se mostrará el historial -->
+<div id="historialVentas" class="card mt-3 hidden p-3">
+  <h3>Historial de ventas</h3>
+  <table class="table table-sm text-light mt-2">
+    <thead>
+      <tr><th>ID</th><th>Fecha</th><th>Productos</th><th>Total</th></tr>
+    </thead>
+    <tbody id="tablaVentas"></tbody>
+  </table>
+</div>
+
   </main>
 
   <!-- JS (al final). Usa el case correcto: JS o js -->

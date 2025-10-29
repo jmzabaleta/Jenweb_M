@@ -70,13 +70,7 @@
 
   <!-- Resalta el enlace activo -->
   <script>
-    (function () {
-      const here = location.pathname.split('/').pop().toLowerCase() || 'index.html';
-      document.querySelectorAll('#MenuNavegacion .nav-link').forEach(a=>{
-        const href = a.getAttribute('href')?.toLowerCase();
-        if(href === here) a.classList.add('active');
-      });
-    })();
+
   </script>
 </body>
 </html>
